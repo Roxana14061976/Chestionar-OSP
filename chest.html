@@ -1,0 +1,59 @@
+<div id="quiz">
+    <div class="question">
+        <p>1. Ce activitate îți place cel mai mult?</p>
+        <input type="radio" name="q1" value="creativitate"> Crearea de desene, videoclipuri sau muzică<br>
+        <input type="radio" name="q1" value="logica"> Rezolvarea de probleme și exerciții logice<br>
+        <input type="radio" name="q1" value="social"> Comunicarea și ajutarea oamenilor<br>
+    </div>
+
+    <div class="question">
+        <p>2. Cum îți place să lucrezi?</p>
+        <input type="radio" name="q2" value="creativitate"> În mod liber, fără reguli stricte<br>
+        <input type="radio" name="q2" value="logica"> Cu reguli clare și structurate<br>
+        <input type="radio" name="q2" value="social"> În echipă, interacționând cu alții<br>
+    </div>
+
+    <div class="question">
+        <p>3. Ce te face să te simți împlinit?</p>
+        <input type="radio" name="q3" value="creativitate"> Să creez lucruri noi<br>
+        <input type="radio" name="q3" value="logica"> Să rezolv probleme complexe<br>
+        <input type="radio" name="q3" value="social"> Să ajut oamenii și să comunic<br>
+    </div>
+
+    <div class="question">
+        <p>4. Cum reacționezi în fața unei provocări?</p>
+        <input type="radio" name="q4" value="creativitate"> Încerc să găsesc o soluție unică și inovatoare<br>
+        <input type="radio" name="q4" value="logica"> Analizez situația și caut cea mai logică rezolvare<br>
+        <input type="radio" name="q4" value="social"> Îmi consult prietenii sau colegii pentru o soluție colaborativă<br>
+    </div>
+
+    <div class="question">
+        <p>5. Ce tip de activitate te entuziasmează cel mai mult?</p>
+        <input type="radio" name="q5" value="creativitate"> Crearea de conținut artistic sau multimedia<br>
+        <input type="radio" name="q5" value="logica"> Lucrul cu cifre, date sau structuri complexe<br>
+        <input type="radio" name="q5" value="social"> Comunicarea și organizarea evenimentelor<br>
+    </div>
+
+    <button onclick="calculateResult()">Află domeniul potrivit!</button>
+    <p class="result" id="result"></p>
+</div>
+
+<script>
+    function calculateResult() {
+        let scores = { creativitate: 0, logica: 0, social: 0 };
+        
+        document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+            scores[input.value]++;
+        });
+        
+        let maxCategory = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        
+        let resultText = {
+            "creativitate": "💡 Domenii recomandate: Artă, Design, Marketing, IT Creativ",
+            "logica": "🔬 Domenii recomandate: Științe, Inginerie, IT, Matematică",
+            "social": "🤝 Domenii recomandate: Educație, Psihologie, Asistență Socială, Vânzări"
+        };
+        
+        document.getElementById("result").innerText = resultText[maxCategory];
+    }
+</script>
